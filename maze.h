@@ -1,3 +1,6 @@
+#ifndef MAZE_H
+#define MAZE_H
+
 #import "stdlib.h"
 #import "stdio.h"
 
@@ -38,3 +41,7 @@ void maze_set(maze_t *maze, int v);
 void maze_print(maze_t *maze);
 void maze_draw(maze_t *maze);
 void maze_move_back(maze_t *maze);
+
+// void usleep(unsigned long usec);
+
+#endif

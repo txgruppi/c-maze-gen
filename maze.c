@@ -1,5 +1,7 @@
 #import "stdlib.h"
 #import "stdio.h"
+#import "string.h"
+#import "time.h"
 #import "maze.h"
 
 int *dir;
