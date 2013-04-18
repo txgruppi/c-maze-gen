@@ -81,9 +81,14 @@ void maze_generate(maze_t *maze) {
   while (1) {
     arr_shuffle(dir, 4);
     int move = maze_move_to_dir(maze, dir[0]) || maze_move_to_dir(maze, dir[1]) || maze_move_to_dir(maze, dir[2]) || maze_move_to_dir(maze, dir[3]);
-    if (move == 0)
+    if (move == 0) {
       maze_move_back(maze);
-    else if (maze->step > 0) {
+      if (maze->step > 0) {
+        printf("\n");
+        maze_draw(maze);
+        usleep(maze->step);
+      }
+    } else if (maze->step > 0) {
       printf("\n");
       maze_draw(maze);
       usleep(maze->step);
@@ -132,7 +137,11 @@ void maze_draw(maze_t *maze) {
   int x, y;
   for (y = 0; y < maze->height; y++) {
     for (x = 0; x < maze->width; x++) {
-      printf("%c", maze_value_for(maze, x, y) == 1 ? maze->wall : maze->path);
+      if (maze->last_point->x == x && maze->last_point->y == y && maze->step > 0) {
+        printf("*");
+      } else {
+        printf("%c", maze_value_for(maze, x, y) == 1 ? maze->wall : maze->path);
+      }
     }
     printf("\n");
   }
@@ -156,7 +165,7 @@ void maze_move_back(maze_t *maze) {
   }
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
   int step = 0;
   int print = 0;
   int draw = 0;
