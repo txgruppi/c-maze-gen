@@ -2,6 +2,7 @@
 #import "stdio.h"
 #import "string.h"
 #import "time.h"
+#import "unistd.h"
 #import "maze.h"
 
 int *dir;
